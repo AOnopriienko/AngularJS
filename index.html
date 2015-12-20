@@ -1,0 +1,107 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/mystyles.css" />
+</head>
+<body>
+<style>
+.odd { background-color: #fafafa;}
+.even { background-color: silver}
+</style>
+<div ng-controller="phoneController">
+<!--
+<div ng-repeat="button in modes">
+        <label>
+            <input type="radio" ng-model="data.mode" value="{{button.value}}" name="modes" />
+            {{button.label}}
+        </label>
+</div>
+<div ng-include="setFile()"></div>
+<div ng-include src="'phonesList.html'"></div>
+<p><textarea ng-model="htmlcode"></textarea></p>
+<p ng-bind-html="htmlcode"></p>
+<table class="table">
+<thead>
+<tr>
+<th>Id</th>
+<th>Модель</th>
+<th>Цена</th>
+</tr>
+</thead>
+<tr ng-repeat="phone in phones" ng-class="$odd ? 'odd' : 'even'">
+<td>{{$index + 1}}</td>
+<td>{{phone.name}}</td>
+<td>{{phone.price}}</td>
+</tr>
+</table>
+<p>Количество элементов: <span ng-bind="phones.length"></span></p>
+<p>Первый элемент: <span ng-bind="phones[0].name"></span></p>
+<input type="text" ng-model="property" />
+<input type="text" ng-model="object.property" />
+<input type="text" ng-model="object.property.property" />
+<p/>
+<p ng-bind-template="{{phones[0].name}}: {{phones[0].price}} $"></p>
+<input type="text" ng-model="phones[0].name" / >
+<p ng-bind="phones[0].name"></p>
+<p>{{1 + 2}}</p>
+<p ng-non-bindable>{{1 + 2}}</p>
+-->
+<div ng-repeat="button in modes">
+	<label>
+		<input type="radio" ng-model="data.mode" value="{{button.value}}" name="modes" />
+		{{button.label}}
+	</label>
+</div>
+<div ng-switch on="data.mode">
+	<div ng-switch-when="Tablets">
+		<ul>
+			<li ng-repeat="tablet in tablets">
+			<b>{{tablet.name}}</b>
+			<p>Цена: {{tablet.price}} $</p>
+			<p>Производитель: {{tablet.company}}</p>
+			</li>
+		</ul>
+	</div>
+	<div ng-switch-when="Phones">
+		<ul>
+			<li ng-repeat="phone in phones">
+			<b>{{phone.name}}</b>
+			<p>Цена: {{phone.price}} $</p>
+			<p>Производитель: {{phone.company}}</p>
+			</li>
+		</ul>
+	</div>
+	<div ng-switch-default>
+		Выберите товары для просмотра
+	</div>
+</div>
+<div ng-style="somestyle">Директива ng-style</div>
+<div ng-class="someclass">Директива ng-class</div>
+<p ng-show="data.visible">Первый блок</p>
+<p ng-hide="data.visible">Второй блок</p>
+<input type="checkbox" ng-model="data.visible">Открыть/скрыть
+<p ng-if="data.visible">Первый блок</p>
+<p ng-if="!data.visible">Второй блок</p>
+</div>
+<!--
+<div ng-controller="phoneController">
+    <ul>
+        <li ng-repeat="company in phones">
+            <p>{{company.name}}</p>
+            <ul ng-repeat="model in company.models">
+                <b>{{model.name}}</b>
+                <p>Цена: {{model.price}} $</p>
+            </ul>
+        </li>
+    </ul>
+</div>
+-->
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/angular-sanitize.min.js"></script>
+<script type="text/javascript">
+angular.module('myApp', ["ngSanitize"]);
+</script>
+<script src="js/controllers/phoneController.js"></script>
+</body>
+</html>
